@@ -1,4 +1,5 @@
 // Prime contains functions for generating and testing for primes.
+// Based on clojure.contrib.lazy-seqs/prime.
 
 package prime
 
@@ -27,7 +28,6 @@ func primesFrom(n int, wheelIndex int, ch chan int) {
 	}
 }
 
-// Based on clojure.contrib.lazy-seqs/prime.
 func Primes() <-chan int {
 	ch := make(chan int)
     go primesFrom(11, 0, ch)
