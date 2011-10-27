@@ -1,6 +1,10 @@
+# -*- makefile -*-
+#
+# Makefile for palindrome_data_gen
+
 include $(GOROOT)/src/Make.inc
 
-TARG=palindrome_challenge
+TARG=palindrome_data_gen
 GOFILES=$(TARG).go
 
 include $(GOROOT)/src/Make.cmd
