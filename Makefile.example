@@ -1,4 +1,8 @@
 # -*- Makefile -*-
+#
+# A custom Makefile. There is a standard way of writing Makefiles for Go
+# apps and packages that uses the include files that come with Go, but I
+# wrote this before I had read about those.
 
 GOARCH = 6
 GOCC = $(GOARCH)g
