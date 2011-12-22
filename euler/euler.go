@@ -1,4 +1,5 @@
-// Euler contains my Project Euler (http://projecteuler.net/) solutions.
+// Euler contains a few sample Project Euler (http://projecteuler.net/)
+// solutions.
 
 package main
 
