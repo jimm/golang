@@ -1,6 +1,8 @@
+// Outputs a file to stdout.
+
 package main
 
-import ( "fmt"; "os"; "bufio" )
+import ( "fmt"; "os"; "bufio"; "path" )
 
 func openExistingFile(filename string) (f *os.File, err os.Error) {
 	f, err = os.Open(filename)
@@ -33,6 +35,11 @@ func eachLine(f *os.File) <-chan string {
 }
 
 func main() {
+	if len(os.Args) < 2 {
+		fmt.Println("usage:", path.Base(os.Args[0]), "file")
+		os.Exit(1)
+	}
+
 	f, err := openExistingFile(os.Args[1])
 	defer f.Close()
 	if err != nil {
