@@ -1,0 +1,14 @@
+* Installing PostgreSQL Driver
+
+#+begin_src sh
+  sudo go install github.com/jbarham/gopgsqldriver
+#+end_src
+
+* Compiling and Running
+
+#+begin_src sh
+  cd THIS_DIRECTORY
+  export GOPATH=THIS_DIRECTORY
+  go install postgresql
+  bin/postgresql host=localhost user=USERNAME dbname=DBNAME
+#+end_src
