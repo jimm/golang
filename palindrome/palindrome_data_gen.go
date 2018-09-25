@@ -1,11 +1,15 @@
 package main
 
-import ( "fmt"; "rand"; "strconv" )
+import (
+	"fmt"
+	"math/rand"
+	"strconv"
+)
 
 const (
 	kNumLines = 10000
-	kMaxNum = 1000000
-	)
+	kMaxNum   = 1000000
+)
 
 func gen_line() string {
 	op := ""
@@ -58,5 +62,7 @@ func gen_line() string {
 }
 
 func main() {
-	for i := 0; i < kNumLines; i++ { fmt.Println(gen_line()) }
+	for i := 0; i < kNumLines; i++ {
+		fmt.Println(gen_line())
+	}
 }

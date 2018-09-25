@@ -1,6 +1,8 @@
-include $(GOROOT)/src/Make.inc
+challenge:	palindrome_challenge.go
+	go build $<
 
-TARG=palindrome_challenge
-GOFILES=$(TARG).go
+data_gen: 	palindrome_data_gen.go
+	go build $<
 
-include $(GOROOT)/src/Make.cmd
+clean:
+	rm -f challenge palindrome_challenge palindrome_data_gen

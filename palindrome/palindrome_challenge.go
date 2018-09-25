@@ -1,11 +1,17 @@
 package main
 
-import ( "fmt"; "os"; "bufio"; "regexp"; "strconv" )
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"regexp"
+	"strconv"
+)
 
-func openExistingFile(filename string) (f *os.File, err os.Error) {
+func openExistingFile(filename string) (f *os.File, err error) {
 	f, err = os.Open(filename)
 	if f == nil {
-		err = os.ENOENT
+		err = os.ErrNotExist
 	}
 	return
 }
@@ -22,35 +28,35 @@ func eachLine(f *os.File) <-chan string {
 				break
 			} else if isPrefix { // incomplete line
 				line_so_far += string(bytes)
-			} else {			// complete line or remainder of line
+			} else { // complete line or remainder of line
 				out <- line_so_far + string(bytes)
 				line_so_far = ""
 			}
 		}
 		close(out)
-    }()
+	}()
 	return out
 }
 
 func reverse(s string) string {
-    // Get Unicode code points.
-    n := 0
-    rune := make([]int, len(s))
-    for _, r := range s {
-        rune[n] = r
-        n++
-    }
-    rune = rune[0:n]
-    // Reverse
-    for i := 0; i < n/2; i++ {
-        rune[i], rune[n-1-i] = rune[n-1-i], rune[i]
-    }
-    // Convert back to UTF-8.
-    return string(rune)
+	// Get Unicode code points.
+	n := 0
+	rune := make([]rune, len(s))
+	for _, r := range s {
+		rune[n] = r
+		n++
+	}
+	rune = rune[0:n]
+	// Reverse
+	for i := 0; i < n/2; i++ {
+		rune[i], rune[n-1-i] = rune[n-1-i], rune[i]
+	}
+	// Convert back to UTF-8.
+	return string(rune)
 }
 
 func is_palindrome(i int64) bool {
-	s := strconv.Itoa64(i)
+	s := strconv.Itoa(int(i))
 	return s == reverse(s)
 }
 
@@ -75,7 +81,6 @@ func parse_matches(matches []string) (result int64) {
 	}
 	return result
 }
-
 
 func main() {
 	f, err := openExistingFile(os.Args[1])

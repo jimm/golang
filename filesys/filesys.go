@@ -2,12 +2,17 @@
 
 package main
 
-import ( "fmt"; "os"; "bufio"; "path" )
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"path"
+)
 
-func openExistingFile(filename string) (f *os.File, err os.Error) {
+func openExistingFile(filename string) (f *os.File, err error) {
 	f, err = os.Open(filename)
 	if f == nil {
-		err = os.ENOENT
+		err = os.ErrNotExist
 	}
 	return
 }
@@ -24,13 +29,13 @@ func eachLine(f *os.File) <-chan string {
 				break
 			} else if isPrefix { // incomplete line
 				line_so_far += string(bytes)
-			} else {			// complete line or remainder of line
+			} else { // complete line or remainder of line
 				out <- line_so_far + string(bytes)
 				line_so_far = ""
 			}
 		}
 		close(out)
-    }()
+	}()
 	return out
 }
 
@@ -47,5 +52,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	for line := range eachLine(f) { fmt.Println(line) }
+	for line := range eachLine(f) {
+		fmt.Println(line)
+	}
 }

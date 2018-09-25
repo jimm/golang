@@ -6,6 +6,8 @@
 
 * Compiling and Running
 
+These are old directions. Ignore them.
+
 #+begin_src sh
   cd THIS_DIRECTORY
   export GOPATH=THIS_DIRECTORY

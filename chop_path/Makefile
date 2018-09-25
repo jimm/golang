@@ -1,8 +1,5 @@
-# -*- makefile -*-
+chop_path:	chop_path.go
+	go build $<
 
-include $(GOROOT)/src/Make.inc
-
-TARG=chop_path
-GOFILES=$(TARG).go
-
-include $(GOROOT)/src/Make.cmd
+clean:
+	rm -f chop_path

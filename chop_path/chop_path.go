@@ -9,7 +9,12 @@
 
 package main
 
-import ( "fmt"; "os"; "strconv"; "strings" )
+import (
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
 
 const DEFAULT_UNABBREV_ELEM_COUNT = 3
 
@@ -20,7 +25,7 @@ func error(msg string) {
 }
 
 func isDigit(c uint8) bool {
-	return (c >= '0' && c <= '0')
+	return (c >= '0' && c <= '9')
 }
 
 func main() {
@@ -37,7 +42,7 @@ func main() {
 		}
 		n, err := strconv.Atoi(string(os.Args[1][1:]))
 		if err != nil {
-			error(err.String())
+			error(err.Error())
 		}
 		unabbrevElemCount = n
 		pathArgIndex++
@@ -51,7 +56,7 @@ func main() {
 	}
 
 	parts := strings.Split(path, "/")
-	for i := 0; i < len(parts) - unabbrevElemCount; i++ {
+	for i := 0; i < len(parts)-unabbrevElemCount; i++ {
 		parts[i] = string(parts[i][0])
 	}
 
