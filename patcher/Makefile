@@ -1,7 +1,7 @@
 NAME = patcher
 
-$(NAME):	src/$(NAME).go
-	go build $<
+$(NAME):	src/*.go
+	go build $?
 
 run:	$(NAME)
 	./$(NAME)
