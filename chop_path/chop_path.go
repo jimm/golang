@@ -30,7 +30,7 @@ func isDigit(c uint8) bool {
 
 func main() {
 	if len(os.Args) < 2 {
-		error("usage: chop_path [-N] /some/path")
+		error("usage: chop_path [-<number>] /some/path")
 	}
 
 	unabbrevElemCount := DEFAULT_UNABBREV_ELEM_COUNT
@@ -49,10 +49,9 @@ func main() {
 	}
 
 	home := os.Getenv("HOME")
-	home_len := len(home)
 	path := os.Args[pathArgIndex]
 	if strings.HasPrefix(path, home) {
-		path = "~" + path[home_len:]
+		path = "~" + path[len(home):]
 	}
 
 	parts := strings.Split(path, "/")
