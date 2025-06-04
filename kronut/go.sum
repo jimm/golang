@@ -1,2 +1,4 @@
+github.com/mattrtaylor/go-rtmidi v0.0.0-20220428034745-af795b1c1a79 h1:CA1UHN3RuY70DlC0RlvgtB1e8h3kYzmvK7s8CFe+Ohw=
+github.com/mattrtaylor/go-rtmidi v0.0.0-20220428034745-af795b1c1a79/go.mod h1:oBuZjmjlKSj9CZKrNhcx/adNhHiiE0hZknECjIP8Z0Q=
 github.com/rakyll/portmidi v0.0.0-20201020180702-d436ceaa537a h1:+qeh9b4LlO8AYVvm+TG4OXDRwBynTLk82t0HDBBBOQ8=
 github.com/rakyll/portmidi v0.0.0-20201020180702-d436ceaa537a/go.mod h1:xKffaBd7e1YUoLpR2azvJqkxEdUDNGNDMlsUNdv6Bcs=

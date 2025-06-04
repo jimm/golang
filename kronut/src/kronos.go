@@ -2,7 +2,7 @@ package main
 
 import (
 	"bytes"
-	"github.com/rakyll/portmidi"
+	"github.com/mattrtaylor/go-rtmidi"
 )
 
 SYSEX_HEADER []uint8 := [0xf0, 0x42, 0x30, 0x68]
@@ -27,13 +27,13 @@ ERROR_REPLY_MESSAGES := [
   "(unknown error code)",
   // The following errors are kronut errors, not Kronos errors
   "timeout"
-[
+]
 
 func isRealtime(b: uint8) bool { return b >= 0xf8 }
 
 type Kronos struct {
-	input  portmidi.Stream
-	output portmidi.Stream
+	input  rtmidi.MIDIIn
+	output rtmidi.MIDIOut
 	uint8  channel
 	sysex  bytes.Buffer
 }

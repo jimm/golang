@@ -3,24 +3,41 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/rakyll/portmidi"
+	"github.com/mattrtaylor/go-rtmidi"
+	"os"
 	"strings"
 )
 
-func find_kronos_input_num() (int, error) {
-	for i := 0; i < portmidi.CountDevices(); i++ {
-		info := portmidi.Info(portmidi.DeviceID(i))
-		if info.IsInputAvailable && strings.EqualFold(info.Name, "kronos keyboard") {
+func find_kronos_input_num(input rtmidi.MIDIIn) (int, error) {
+	num_ports, err := input.PortCount()
+	if err != nil {
+		return -1, err
+	}
+
+	for i := 0; i < num_ports; i++ {
+		name, err := input.PortName(i)
+		if err != nil {
+			return -1, err
+		}
+		if strings.EqualFold(name, "kronos keyboard") {
 			return i, nil
 		}
 	}
 	return -1, errors.New("Kronos input not found")
 }
 
-func find_kronos_output_num() (int, error) {
-	for i := 0; i < portmidi.CountDevices(); i++ {
-		info := portmidi.Info(portmidi.DeviceID(i))
-		if info.IsOutputAvailable && strings.EqualFold(info.Name, "kronos sound") {
+func find_kronos_output_num(output rtmidi.MIDIOut) (int, error) {
+	num_ports, err := output.PortCount()
+	if err != nil {
+		return -1, err
+	}
+
+	for i := 0; i < num_ports; i++ {
+		name, err := output.PortName(i)
+		if err != nil {
+			return -1, err
+		}
+		if strings.EqualFold(name, "kronos sound") {
 			return i, nil
 		}
 	}
@@ -28,14 +45,29 @@ func find_kronos_output_num() (int, error) {
 }
 
 func main() {
-	defer portmidi.Terminate()
+	input, err := rtmidi.NewMIDIInDefault()
+	if err != nil {
+		fmt.Printf("error: %s\n", err)
+		os.Exit(0)
+	}
 
-	portmidi.Initialize()
+	output, err := rtmidi.NewMIDIOutDefault()
+	if err != nil {
+		fmt.Printf("error: %s\n", err)
+		os.Exit(0)
+	}
 
-	input_num, err := find_kronos_input_num()
+	input_num, err := find_kronos_input_num(input)
 	if err != nil {
 		fmt.Printf("error: %s\n", err)
 	} else {
 		fmt.Printf("Kronos input number: %d\n", input_num)
+	}
+
+	output_num, err := find_kronos_output_num(output)
+	if err != nil {
+		fmt.Printf("error: %s\n", err)
+	} else {
+		fmt.Printf("Kronos output number: %d\n", output_num)
 	}
 }

@@ -1,5 +1,5 @@
-module jimmenard.com/kronut
+module github.com/jimm/golang/kronut
 
 go 1.20
 
-require github.com/rakyll/portmidi v0.0.0-20201020180702-d436ceaa537a
+require github.com/mattrtaylor/go-rtmidi v0.0.0-20220428034745-af795b1c1a79 // indirect

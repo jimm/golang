@@ -1,23 +1,20 @@
 # PortMidi Test
 
-A simple test application that uses the [`portmidi`](https://github.com/rakyll/portmidi) module.
-Install that module by running
+A simple test application that uses
+[RtMidi](https://www.music.mcgill.ca/~gary/rtmidi/) and the
+[`go-rtmidi`](https://pkg.go.dev/github.com/mattrtaylor/go-rtmidi) package.
 ``` sh
-go get github.com/rakyll/portmidi
+go get github.com/mattrtaylor/go-rtmidi
 ```
 
 # Compiling
 
-You might need to add `$HOME/go` to your `GOPATH` environment variable so
-that the `portmidi` module is found.
-
 ``` sh
-export GOPATH="$GOPATH:$HOME/go"
 make
 ```
 
 # Running
 
 ``` sh
-./pmtest
+./kronut
 ```
