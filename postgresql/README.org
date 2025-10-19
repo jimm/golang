@@ -1,8 +1,6 @@
 * Installing PostgreSQL Driver
 
-#+begin_src sh
-  sudo go install github.com/jbarham/gopgsqldriver
-#+end_src
+: go get github.com/lib/pq
 
 * Compiling and Running
 

@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	_ "github.com/jbarham/gopgsqldriver"
 	"os"
 	"strings"
@@ -9,7 +10,7 @@ import (
 
 func chkerr(err error) {
 	if err != nil {
-		println(err.Error())
+		fmt.Println(err)
 		os.Exit(1)
 	}
 }

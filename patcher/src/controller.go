@@ -1,7 +1,5 @@
 package patcher
 
-import "portmidi"
-
 type Controller struct {
 	CcNum           byte
 	TranslatedCcNum byte
